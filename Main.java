@@ -16,7 +16,74 @@ public class Main {
 
         List<String> options = List.of("behavioural", "technical", "leadership", "exit");
 
+        List<String> tech = List.of(
+                "analysed",
+                "debugged",
+                "tested",
+                "verified",
+                "implemented",
+                "improved",
+                "optimised",
+                "documented",
+                "reviewed",
+                "refactored",
+                "validated",
+                "troubleshooted",
+                "root cause",
+                "edge cases");
+
+
+        List<String> behave = List.of(
+             // Behavioural
+                "communicated",
+                "listened",
+                "collaborated",
+                "adapted",
+                "prioritised",
+                "calm",
+                "ownership",
+                "followed up",
+                "supported",
+                "clarified",
+                "resolved",
+                "reflected"
+        );
+
+        List<String> leader = List.of(
+
+                            // Leadership
+                "led",
+                "guided",
+                "organised",
+                "delegated",
+                "motivated",
+                "encouraged",
+                "took initiative",
+                "coordinated",
+                "facilitated",
+                "set expectations",
+                "created structure",
+                "mentored",
+                "empowered",
+                "accountability",
+
         
+                "initiative",
+                "communication",
+                "teamwork",
+                "problem-solving",
+                "adaptability",
+                "resilience",
+                "attention to detail",
+                "customer-focused",
+                "solution-focused",
+                "learning mindset"
+
+        );
+
+
+        int score = 0;
+
         Scanner userInput = new Scanner(System.in);
 
         System.out.print("Type your category: ");
@@ -30,26 +97,80 @@ public class Main {
             return;
         }
 
+        //behavioural segment
+
         if (category.equals("behavioural")) {
             System.out.println("Tell me about a time you solved a difficult problem.\n");
             System.out.println("Type your answer: ");
 
             String behaveInput = userInput.nextLine();
-        } 
-        
+            behaveInput = behaveInput.toLowerCase();
+            int wordCount = behaveInput.trim().split("\\s+").length;
+
+            if(wordCount < 20){
+                score -= 1;
+            }
+
+            for(String i : behave){
+                if(behaveInput.contains(i)){
+                    score += 1;
+                }
+            }
+
+            System.out.println("Word count: " + wordCount);
+            System.out.println("Score: " + score);
+            userInput.close();
+            return;
+        }
+
+        //techincal segment
+
         else if (category.equals("technical")) {
             System.out.println("Explain one Java concept you understand well.\n");
             System.out.println("Type your answer: ");
+
+
             String techInput = userInput.nextLine();
-            
-        } 
-        
+            techInput = techInput.toLowerCase();
+            int wordCount = techInput.trim().split("\\s+").length;
+
+            if(wordCount < 20){
+                score -= 1;
+            }
+
+            for(String i : tech){
+                if(techInput.contains(i)){
+                    score += 1;
+                }
+            }
+            System.out.println("Score: " + score);
+            userInput.close();
+            return;
+        }
+
+        //leadership seg
         else if (category.equals("leadership")) {
             System.out.println("Tell me about a time you supported someone else.\n");
             System.out.println("Type your answer: ");
+
             String leadInput = userInput.nextLine();
-        } 
-        
+            leadInput = leadInput.toLowerCase();
+            int wordCount = leadInput.trim().split("\\s+").length;
+
+            if(wordCount < 20){
+                score -= 1;
+            }
+
+            for(String i : leader){
+                if(leadInput.contains(i)){
+                    score += 1;
+                }
+            }
+            System.out.println("Score: " + score);
+            userInput.close();
+            return;
+        }
+
         else if (category.equals("exit")) {
             System.out.println("Exited.");
         }
